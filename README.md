@@ -7,17 +7,35 @@ ecom\_ana/
 
 ├── sql/
 
-│   ├── create\_tables.sql      # 建表语句
+│   ├── 表格创建.sql     
 
-│   ├── analysis.sql           # 核心分析 SQL
+│   ├── 月销售趋势.sql         
 
-│   └── indexes.sql            # 索引创建语句
+│   ├── 用户复购率.sql         
+
+│   ├── RFM分析.sql          
+
+│   ├── 销量排行.sql          
+
+│   ├── 索引创建.sql          
+
+│   ├── 索引创造前查找效果（模拟）.sql          
+
+│   └── 索引后查找效果.sql      
+
+├── images/
+
+│   ├── ecommerce.png         #ER图      
+
+│   ├── analysis_chart.png     #数据分析图  
+
+│   ├── 索引建立前.jpg      
+
+│   └── 索引建立后.jpg    
 
 ├── generate\_data.py           # 生成测试数据
 
 ├── visualize.py               # 数据可视化
-
-├── analysis\_chart.png         # 图表输出
 
 ├── requirements.txt           # Python 依赖
 
@@ -34,21 +52,20 @@ Python 库：pymysql、pandas、matplotlib、faker
 工具：DBeaver、Git、MySQL 命令行
 
 ### ER图
-![[ecommerce.png]]
-
-
+ ![ER图](images/ecommerce.png)
+ 
 ### 优化效果
 
 优化前（强制忽略索引）：Nested loop inner join，成本 434,487，扫描行数 591,965。
-![[索引建立前.jpg]]
+ ![索引建立前](images/索引建立前.jpg)
 优化后（使用索引）：Covering index lookup，成本 10,052，扫描行数 99,879。
-![[索引建立后.jpg]]
+![索引建立前](images/索引建立后.jpg)
 效率提升：查询成本降低约 97.7%，扫描行数减少 83%。
 
 ### 数据可视化
 
 使用 Python（pandas + matplotlib）读取分析结果，生成图表：
-![[analysis_chart 1.png]]
+![数据可视化](images/analysis_chart.png)
 
 
 ## 项目亮点
@@ -57,11 +74,11 @@ Python 库：pymysql、pandas、matplotlib、faker
     
 - 十万级数据量下的 SQL 优化实践，使用 `EXPLAIN` 和索引显著提升性能。
     
-- 使用窗口函数（`NTILE`、`ROW_NUMBER`）完成 RFM 用户分层，体现高级 SQL 能力。
+- 使用窗口函数（`NTILE`、`ROW_NUMBER`）完成 RFM 用户分层。
 
 ## 联系方式
 
-如有问题，欢迎通过 [GitHub Issues](https://github.com/%E4%BD%A0%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D/ecom_analysis/issues) 交流。
+如有问题，欢迎通过bingalbatross@gmail.com交流。
 
 
 
