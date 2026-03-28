@@ -3,11 +3,11 @@ import random
 from faker import Faker
 from datetime import datetime, timedelta
 
-# 连接数据库（请修改密码）
+# 连接数据库
 conn = pymysql.connect(
     host='localhost',
     user='root',
-    password='123456',      # 改成你自己的 MySQL 密码
+    password='123456',      
     database='ecommerce',
     charset='utf8mb4'
 )
@@ -50,7 +50,7 @@ def insert_products(n=1000):
     print(f"商品插入完成，共 {n} 条")
 
 # -------------------- 3. 插入订单和明细 --------------------
-def insert_orders_and_items(n_orders=100000):  # 先测试 10 万订单，后期可改为 100 万
+def insert_orders_and_items(n_orders=100000):  # 10 万订单
     # 获取所有 user_id
     cursor.execute("SELECT user_id FROM users")
     user_ids = [row[0] for row in cursor.fetchall()]
@@ -108,12 +108,12 @@ def insert_orders_and_items(n_orders=100000):  # 先测试 10 万订单，后期
         conn.commit()
     print(f"订单及明细插入完成，共 {n_orders} 个订单")
 
-# 执行（先小规模测试，确认无误后再改大）
-if __name__ == '__main__':
+# 执行
+    if __name__ == '__main__':
     # 1. 插入用户（10万）
     insert_users(100000)
     # 2. 插入商品（1000）
     insert_products(1000)
-    # 3. 插入订单和明细（先10万订单，成功后再改100万）
-    insert_orders_and_items(100000)   # 百万订单会很慢，建议先10万跑通
+    # 3. 插入订单和明细
+    insert_orders_and_items(100000)   
     conn.close()
